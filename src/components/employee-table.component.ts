@@ -21,10 +21,10 @@ type SortDirection = 'asc' | 'desc';
       <button class="download-btn download-all" (click)="downloadAll()" [disabled]="isDownloadingAll">
         {{ isDownloadingAll ? 'Downloading...' : 'Download All' }}
       </button>
-        <div class="switch-button">
+        <!-- <div class="switch-button">
           <input class="switch-button-checkbox" type="checkbox" (change)="onToggle($event)">
           <label class="switch-button-label" for=""><span class="switch-button-label-span">Synergates</span></label>
-        </div>
+        </div> -->
 
       <div class="controls">
         <div class="search-box">
@@ -41,14 +41,14 @@ type SortDirection = 'asc' | 'desc';
           }
         </div>
         <div class="results-count">
-          Showing {{ filteredEmployees.length }} of {{ employees.length }} employees
+          Showing {{ filteredEmployees.length }} of {{ employees.length }} records
         </div>
       </div>
 
       @if (filteredEmployees.length === 0 && employees.length === 0) {
         <div class="no-data">
           <div class="no-data-icon">📋</div>
-          <h3>No Employee Data</h3>
+          <h3>No Report Card Data</h3>
           <p>Import an Excel file to view employee records</p>
         </div>
       } @else if (filteredEmployees.length === 0) {

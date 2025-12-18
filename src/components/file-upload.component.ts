@@ -23,7 +23,7 @@ import { GoogleApiService } from '../services/googleapi.service';
           style="display: none"
         />
         <!-- <div class="upload-icon">📊</div> -->
-        <h3>Import Employee Data</h3>
+        <h3>Import Report Card Data</h3>
         <p>Click to browse or drag and drop Excel file</p>
         <p class="file-info">.xlsx, .xls files accepted</p>
       </div>
@@ -197,7 +197,7 @@ export class FileUploadComponent {
       const employees = this.employeeService.parseExcelData(data);
       localStorage.removeItem('employees');
       this.employeeService.setEmployees(employees);
-      this.successMessage = `Successfully imported ${employees.length} employees`;
+      this.successMessage = `Successfully imported ${employees.length} report cards.`;
       this.fileProcessed.emit();
       // this.sendEmailTest()
 

@@ -13,8 +13,8 @@ import { GoogleApiService } from './services/googleapi.service';
     <div class="app-container">
       <header class="app-header">
         <div class="header-content">
-          <h1 class="app-title">Payroll Management System</h1>
-          <p class="app-subtitle">Employee Salary Management & Payslip Generation</p>
+          <h1 class="app-title">PAK ASPIRE SCHOOL SYSTEM</h1>
+          <p class="app-subtitle">Student Report Card Management & Generation</p>
         </div>
         <button class="login-button" (click)="login()" [disabled]="isLoggedIn">{{isLoggedIn ? 'LoggedIn' : 'LogIn'}}</button>
       </header>
@@ -32,7 +32,8 @@ import { GoogleApiService } from './services/googleapi.service';
       </main>
 
       <footer class="app-footer">
-        <p>&copy; 2025 Payroll Management System. All rights reserved.</p>
+        <p>&copy; 2025 Report Card Management System. All rights reserved.</p>
+        <p>Built with ❤️ by M. Hassan Asghar</p>
       </footer>
     </div>
   `,
