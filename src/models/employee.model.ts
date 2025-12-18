@@ -1,0 +1,32 @@
+export interface Employee {
+  id?: string;
+  name: string;
+  designation: string;
+  salaryMonth: string;
+  basicSalary: number;
+  houseRentAllowance: number;
+  utilityAllowance: number;
+  medicalAllowance: number;
+  conveyanceAllowance: number;
+  arrears: number;
+  grossSalary: number;
+  bonus: number;
+  increment: number;
+  totalGrossSalary: number;
+  incomeTax: number;
+  loanDeduction: number;
+  eobi: number;
+  otherDeductions: number;
+  totalDeductions: number;
+  netPay: number;
+  inWords: string;
+  downloading?: boolean;
+  sendingEmail?: boolean;
+  email: string;
+  downloaded?: boolean;
+  sentEmail?: boolean;
+  dependabilityAllowances?: number;
+  punctualityAllowances?: number;
+  mannedMinutesAllowances?: number;
+  leaveDeductions?: number;
+}
