@@ -62,25 +62,26 @@ type SortDirection = 'asc' | 'desc';
           <table class="employee-table">
             <thead>
               <tr>
-                <th (click)="sort('name')" class="sortable">
+                <th (click)="sort('studentName')" class="sortable">
                   Name
-                  <span class="sort-indicator">{{ getSortIndicator('name') }}</span>
+                  <span class="sort-indicator">{{ getSortIndicator('studentName') }}</span>
                 </th>
-                <th (click)="sort('designation')" class="sortable">
-                  Designation
-                  <span class="sort-indicator">{{ getSortIndicator('designation') }}</span>
+                <th (click)="sort('class')" class="sortable">
+                  Class
+                  <span class="sort-indicator">{{ getSortIndicator('class') }}</span>
                 </th>
-                <th (click)="sort('basicSalary')" class="sortable">
-                  Basic Salary
-                  <span class="sort-indicator">{{ getSortIndicator('basicSalary') }}</span>
+                <th (click)="sort('totalMarks')" class="sortable">
+                 Total Marks
+                  <span class="sort-indicator">{{ getSortIndicator('totalMarks') }}</span>
                 </th>
-                <th (click)="sort('totalGrossSalary')" class="sortable">
-                  Gross Salary
-                  <span class="sort-indicator">{{ getSortIndicator('totalGrossSalary') }}</span>
+                <th (click)="sort('obtainedMarks')" class="sortable">
+                  Obtained Marks
+                  <span class="sort-indicator">{{ getSortIndicator('obtainedMarks') }}</span>
                 </th>
-                <th>Allowances</th>
-                <th>Deductions</th>
-                <th style="display: flex; justify-content: space-between;">Net Salary <div (click)="toggleNetSalary()"><svg style="width: 19px; cursor: pointer;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g clip-path="url(#clip0_15_200)"> <rect width="24" height="24" fill="none"></rect> <circle cx="12" cy="13" r="2" stroke="#000000" stroke-linejoin="round"></circle> <path d="M12 7.5C7.69517 7.5 4.47617 11.0833 3.39473 12.4653C3.14595 12.7832 3.14595 13.2168 3.39473 13.5347C4.47617 14.9167 7.69517 18.5 12 18.5C16.3048 18.5 19.5238 14.9167 20.6053 13.5347C20.8541 13.2168 20.8541 12.7832 20.6053 12.4653C19.5238 11.0833 16.3048 7.5 12 7.5Z" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path> </g> <defs> <clipPath id="clip0_15_200"> <rect width="24" height="24" fill="white"></rect> </clipPath> </defs> </g></svg></div></th>
+                <th>Percentage</th>
+                <th>Grade</th>
+                <th>Result</th>
+                <!-- <th style="display: flex; justify-content: space-between;">Result <div (click)="toggleNetSalary()"><svg style="width: 19px; cursor: pointer;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g clip-path="url(#clip0_15_200)"> <rect width="24" height="24" fill="none"></rect> <circle cx="12" cy="13" r="2" stroke="#000000" stroke-linejoin="round"></circle> <path d="M12 7.5C7.69517 7.5 4.47617 11.0833 3.39473 12.4653C3.14595 12.7832 3.14595 13.2168 3.39473 13.5347C4.47617 14.9167 7.69517 18.5 12 18.5C16.3048 18.5 19.5238 14.9167 20.6053 13.5347C20.8541 13.2168 20.8541 12.7832 20.6053 12.4653C19.5238 11.0833 16.3048 7.5 12 7.5Z" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path> </g> <defs> <clipPath id="clip0_15_200"> <rect width="24" height="24" fill="white"></rect> </clipPath> </defs> </g></svg></div></th> -->
                 <th>Action</th>
                 <th>{{showEmailColumn ? 'Email' : ''}}</th>
               </tr>
@@ -88,19 +89,20 @@ type SortDirection = 'asc' | 'desc';
             <tbody>
               @for (employee of filteredEmployees; track employee.id) {
                 <tr>
-                  <td class="name-cell">{{ employee.name }}</td>
-                  <td>{{ employee.designation }}</td>
-                  <td class="amount">Rs. {{ employee.basicSalary.toLocaleString() }}</td>
-                  <td class="amount">Rs. {{ employee.totalGrossSalary.toLocaleString() }}</td>
-                  <td class="amount">Rs. {{ calculateAllowances(employee).toLocaleString() }}</td>
-                  <td class="amount deduction">Rs. {{ calculateDeductions(employee).toLocaleString() }}</td>
+                  <td class="name-cell">{{ employee.studentName }}</td>
+                  <td>{{ employee.class }}</td>
+                  <td class="amount">Rs. {{ employee.totalMarks.toLocaleString() }}</td>
+                  <td class="amount">Rs. {{ employee.obtainedMarks.toLocaleString() }}</td>
+                  <td>{{ employee.percentage }}%</td>
+                  <td>{{ employee.grade }}</td>
+                  <td>{{ employee.results }}</td>
                   <!-- <td class="amount net-salary">Rs. {{ calculateNetSalary(employee).toLocaleString() }}</td> -->
-                  <td class="amount net-salary">Rs.   <ng-container *ngIf="showNetSalary; else hiddenSalary">
+                  <!-- <td class="amount net-salary">Rs.   <ng-container *ngIf="showNetSalary; else hiddenSalary">
                             {{ calculateNetSalary(employee).toLocaleString() }}
                           </ng-container>
                           <ng-template #hiddenSalary>
                             XXXXXX
-                          </ng-template></td>
+                          </ng-template></td> -->
                   <td>
                     <button class="download-btn" (click)="downloadPayslip(employee)" [ngStyle]="{'background': (employee.downloaded && !employee.downloading) ? '#25b09b' : ''}" [disabled]="isDownloadingAll || employee.downloading">
                         <span *ngIf="!employee.downloading">{{employee.downloaded ? 'Downloaded' : 'Download'}}</span>
@@ -466,8 +468,8 @@ export class EmployeeTableComponent implements OnInit {
     if (this.searchTerm.trim()) {
       const term = this.searchTerm.toLowerCase();
       filtered = filtered.filter(emp =>
-        emp.name.toLowerCase().includes(term) ||
-        emp.designation.toLowerCase().includes(term)
+        emp.studentName.toLowerCase().includes(term) ||
+        emp.class.toLowerCase().includes(term)
       );
     }
 
@@ -510,31 +512,6 @@ export class EmployeeTableComponent implements OnInit {
     this.applyFilters();
   }
 
-  calculateAllowances(employee: Employee): number {
-    return (
-      employee.houseRentAllowance +
-      employee.utilityAllowance +
-      employee.medicalAllowance +
-      employee.conveyanceAllowance +
-      employee.arrears +
-      employee.bonus +
-      employee.increment
-    );
-  }
-
-  calculateDeductions(employee: Employee): number {
-    return (
-      employee.incomeTax +
-      employee.loanDeduction +
-      employee.eobi +
-      employee.otherDeductions
-    );
-  }
-
-  calculateNetSalary(employee: Employee): number {
-    return employee.totalGrossSalary - this.calculateDeductions(employee);
-  }
-
   async downloadPayslip(employee: Employee) {
     employee.downloading = true
     await this.payslipService.generatePayslipPDF(employee, this.is2ShadesSelected);
@@ -562,7 +539,7 @@ export class EmployeeTableComponent implements OnInit {
       try {
         await this.payslipService.generatePayslipPDF(emp, this.is2ShadesSelected);
       } catch (err) {
-        console.error(`Failed for ${emp.name}`, err);
+        console.error(`Failed for ${emp.studentName}`, err);
       }
       emp.downloading = false;
     }
